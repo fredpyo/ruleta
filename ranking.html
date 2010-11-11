@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ruleta ^ 2 - RANKING</title>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/blitzer/jquery-ui.css" type="text/css" media="all" /> 
+		<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/jquery-ui.min.js" type="text/javascript"></script>
+		<style>
+			body {
+				background: #000;
+				color: #fff;
+				font-family: cambria;
+				text-align: center;
+			}
+			
+			h1 {
+				text-shadow: #0000ff 0 0 60px, #0066ff 0 0 30px, #00ccff 0 0 10px; 
+				padding-bottom: 0;
+				margin-bottom: 0;
+			}
+			
+			h1 sup {
+				text-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+			}
+			
+			h2 {
+				font-size: 3em;
+				padding: 0;
+				margin: 0 0 1em 0;
+				text-shadow: #ff0000 0 0 60px, #ff6600 0 0 30px, #ffcc00 0 0 10px; 
+			}
+			
+			h2 .firefox {
+				font-weight: bold;
+				text-shadow: #ff0000 0 0 20px, #ff6600 0 0 20px, #ff7700 0 0 10px; 
+			}
+			
+			#players td {
+				text-align: left;
+			}
+			
+			#players thead td {
+				font-size: 1.5em;
+				text-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+			}
+			
+			.player_place {
+				text-shadow: #0000ff 0 0 60px, #0066ff 0 0 30px, #00ccff 0 0 10px; 
+				font-size: 2em;
+			}
+			
+			.player_name {
+				text-shadow: #0000ff 0 0 60px, #0066ff 0 0 30px, #00ccff 0 0 10px; 
+				font-size: 2em;
+			}
+			
+			.player_score {
+				text-shadow: #ff2200 0 0 60px, #ffcc00 0 0 30px, #ffFF00 0 0 10px; 
+				font-size: 2.5em;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<h1>Ruleta<sup>2</sup></h1>
+		<h2>Ranking</h2>
+	
+		<table id="players" cellpadding="5" align="center" />
+			<thead>
+				<td>Pos</td>
+				<td>Name</td>
+				<td>Played</td>
+				<td>Won</td>
+				<td>Lost</td>
+				<td>Score</td>
+			</thead>
+		</table>
+	
+		<script>
+			// player presets
+			var players =
+				[{"name":"Judge","played":"5","won":"4","lost":"1","score":"80"},{"name":"Dread","played":"4","won":"3","lost":"1","score":"75"},{"name":"TylerDurden","played":"6","won":"4","lost":"2","score":"66"},{"name":"DarthHoracio","played":"0","won":"0","lost":"0","score":"0"},{"name":"BeMySluts","played":"6","won":"0","lost":"6","score":"0"},{"name":"Shrike","played":"0","won":"0","lost":"0","score":"0"},{"name":"MERLINux","played":"0","won":"0","lost":"0","score":"0"}]
+			;
+			
+			function fadeIn($e) {
+				$e.hide(200);
+			}
+			
+			$.get(
+				'http://www.ieeehh.com/ruleta/stats.php',
+				//'http://localhost/ranking.json',
+				"",
+				show_ranking,
+				"json"
+			);
+			
+			function show_ranking(data, status) {
+				$.each(data, function(i, player) {
+				//for (var i in players) {
+					var place = parseInt(i)+1;
+					$tr = $("<tr />").addClass("player");
+					$("<td />").text(place).addClass("player_place").appendTo($tr);
+					$("<td />").text(player.name).addClass("player_name").appendTo($tr);
+					$("<td />").text(player.played).addClass("").appendTo($tr);
+					$("<td />").text(player.won).addClass("").appendTo($tr);
+					$("<td />").text(player.lost).addClass("").appendTo($tr);
+					$("<td />").text(player.score).addClass("player_score").appendTo($tr);
+					$tr.find("td").hide();
+					$tr.appendTo($("#players"));
+					
+					setTimeout(function() {
+						$("tr.player").eq(i).find("td").fadeIn(1500);
+					}, place*100);
+				});
+			}
+		</script>
+	</body>
+</html>

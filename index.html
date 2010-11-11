@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+	
+		<title>Ruleta ^ 2</title>
+		<link rel="shortcut icon" href="ruleta_favicon.ico" type="image/x-icon"/>
+
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/blitzer/jquery-ui.css" type="text/css" media="all" /> 
+		<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" /> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/jquery-ui.min.js" type="text/javascript"></script>
+		<style>
+			body {
+				background: #000;
+				color: #fff;
+				font-family: cambria;
+			}
+			
+			h1 {
+				text-shadow: #0000ff 0 0 60px, #0066ff 0 0 30px, #00ccff 0 0 10px; 
+				padding-bottom: 0;
+				margin-bottom: 0;
+			}
+			
+			h1 sup {
+				text-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+			}
+			
+			h2 {
+				padding-top: 0; margin-top: 0;
+				font-size: 11px;
+				font-weight: normal;
+			}
+			
+			h2 .firefox {
+				font-weight: bold;
+				text-shadow: #ff0000 0 0 20px, #ff6600 0 0 20px, #ff7700 0 0 10px; 
+			}
+			
+			#left {
+				float: left;
+				border-right: 2px solid #333;
+				width: 200px;
+				padding: 0 20px;
+				margin-right: 20px;
+			}
+			
+			#right {
+				padding-top: 50px;
+			}
+			
+			.slider {
+				font-size: 10px;
+			}
+			
+			.label {
+				font-weight: bold;
+				margin-bottom: 0.5em;
+			}
+			
+			.counter {
+				float: right;
+			}
+			
+			#players ol {
+				padding: 0 1em;
+				margin: 0;
+			}
+			
+			#players ol li {
+				margin-bottom: 3px;
+			}
+			
+			.vs {
+				font-size: 5em;
+				float: left;
+				text-shadow: #ff0000 0 0 60px, #ff6600 0 0 30px, #ffcc00 0 0 10px; 
+			}
+			
+			
+			.team_block {
+				padding: 0.5em;
+				font-size: 3em;
+				float: left;
+				width: 400px;
+			}
+			
+			.glow_blue {
+				text-shadow: #0000ff 0 0 60px, #0066ff 0 0 30px, #00ccff 0 0 10px; 
+			}
+			
+			.glow_red {
+				text-shadow: #ff0000 0 0 60px, #ff0000 0 0 30px, #ff6600 0 0 10px; 
+			}
+			
+			.glow_green {
+				text-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+			}
+			
+			.glow_green .button {
+				text-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+				-moz-box-shadow: #00ffff 0 0 60px, #00ff66 0 0 30px, #00ffcc 0 0 10px; 
+			}
+			
+			.glow_purple {
+				text-shadow: #660066 0 0 60px, #993399 0 0 30px, #ff99ff 0 0 10px; 
+			}
+			
+			.particle {
+				font-family: serif;
+				position: absolute;
+				font-size: 3em;
+			}
+			
+			#right button {
+				margin-top: 1em;
+			}
+		</style>
+		
+	</head><body>
+		<div id="left">
+			<h1>Ruleta<sup>2</sup></h1>
+			<h2>It runs so much better on <span class="firefox">Firefox</span></h2>
+			
+			<p>
+			</p><div class="counter" id="players_number">2</div><div class="label">Cantidad de Jugadores:</div>
+			<div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="players_slider"><div style="width: 0%;" class="ui-slider-range ui-slider-range-min ui-widget-header"></div><a style="left: 0%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a></div>
+			
+			
+			<p>
+			</p><div class="counter" id="teams_number">2</div><div class="label">Cantidad de Equipos:</div>
+			<div style="display: none;" class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="teams_slider"><div style="width: 0%;" class="ui-slider-range ui-slider-range-min ui-widget-header"></div><a style="left: 0%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a></div>
+			
+			
+			<p>
+			</p><div class="label">Jugadores:</div>
+			<div id="players">
+				<ol>
+					<li><input class="player_name" id="player1" value="Dread" type="text"></li>
+					<li><input class="player_name" id="player2" value="TylerDurden" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player3" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player4" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player5" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player6" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player7" type="text"></li>
+					<li style="display: none;"><input class="player_name" id="player8" type="text"></li>
+				</ol>
+			</div>
+			
+			<p>
+			<div class="counter" id="fuzziness_number">0</div><div class="label">Fuzziness:</div>
+			<div class="slider" id="fuzziness_slider"></div>
+			<input type="checkbox" id="useMinPlayers" name="useMinPlayers" />Use min players<br />
+			</p>
+
+			<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="width: 100%;" id="roll"><span class="ui-button-text">Roll the Dice!</span></button>
+			
+		</div>
+		
+		<div id="right">
+		</div>
+	
+	
+		<script>
+			var allPlayers = [];
+			refreshExistingPlayers();
+			
+			//consulta a la bd cuáles son los últimos jugadores
+			$.post('lastplayed.php', populatePlayers, "text");
+			function populatePlayers(res)
+			{
+				//llena los campos con los que jugaron último !
+				numPlayers = 2;
+				var obj = JSON.parse(res);
+				if (obj != null) {
+					var numPlayers = obj['nicks'].length;
+					for (var i = 0; i < numPlayers; i++) {
+						$("#player" + (i + 1)).val(obj['nicks'][i]);
+					}
+				}
+				var $players = $(".player_name");
+				$players.each(function(i ,e) {
+				if (i > numPlayers - 1)
+					$(e).parent().hide();
+				});
+				
+				// players slider
+				$players_slider = $("#players_slider").slider({
+					range : "min",
+					value: 2,
+					min : 2,
+					max : 8,
+					step : 1,
+					start : function (event, ui) {
+						
+					},
+					slide : function (event, ui) {
+						updatePlayersSlider(ui.value)
+					}
+				});
+				
+				// fuzziness slider
+				$fuzziness_slider = $("#fuzziness_slider").slider({
+					range : "min",
+					value: 0,
+					min : 0,
+					max : 100,
+					step : 1,
+					start : function (event, ui) {
+						
+					},
+					slide : function (event, ui) {
+						updateFuzzinessSlider(ui.value)
+					}
+				});
+				
+				updatePlayersSlider(numPlayers);
+
+			}
+		
+			
+			function refreshExistingPlayers() {
+				allPlayers = [];
+				$.post('existingplayers.php', function(res) {
+					var obj = JSON.parse(res);
+					allPlayers = obj;
+					$(".player_name").autocomplete({
+						source: allPlayers,
+						highlight: function(match, keywords) {
+							keywords = keywords.split(' ').join('|');
+							return match.replace(new RegExp("("+keywords+")", "gi"),'<b>$1</b>');
+						}
+
+					});
+				}, "text");
+			}
+			
+			function updatePlayersSlider(numPlayers) {
+				$("#players_slider").slider("option", "value", numPlayers);
+				var $players = $(".player_name");
+				$("#players_number").text(numPlayers);
+				$players.each(function(i ,e) {
+					if (i <= numPlayers-1)
+						$(e).parent().fadeIn();
+					else
+						$(e).parent().fadeOut();
+				});
+			}
+			
+			function updateFuzzinessSlider(numFuzzy) {
+				$("#fuzziness_number").text(numFuzzy);
+			}
+
+			
+			function verifyPlayers() {
+				nonExistingPlayers = [];
+				var i, j;
+				var exists;
+				for (i = 0; i < players.length; i++) {
+					exists = false;
+					for (j = 0; j < allPlayers.length; j++) {
+						if (players[i] == allPlayers[j]) {
+							exists = true;
+						}
+					}
+					if (!exists) {
+						nonExistingPlayers[nonExistingPlayers.length] = players[i];
+					}
+				}
+			}
+			
+			$teams_slider = $("#teams_slider").slider({
+				range : "min",
+				value: 2,
+				min : 2,
+				max : 4,
+				step : 1,
+				slide : function (event, ui) {
+					$("#teams_number").text(ui.value);
+				}
+			}).hide();
+			
+			$roll_button = $("#roll").button();
+			
+			$roll_button.click(function() {
+				execute($("#fuzziness_number").text(), $("#useMinPlayers").is(":checked"));
+			});
+
+			
+			// equipos
+			var teams = [];
+			var winners = [];
+			// lista de jugadores
+			var players = [];
+			//los posibles jugadores no existentes
+			var nonExistingPlayers = [];
+				
+			function getPlayers() {
+				players = [];
+				$(".player_name:visible").each(function(i ,e) {
+					if ($.trim($(e).val()) != '')
+						players.push($(e).val());
+				});
+			}
+			
+			function setWinners(numTeam, pass) {
+				for (var i = 0; i < teams.length; i++) {
+					for (var j = 0; j < teams[i].length; j++) {
+						teams[i][j] = teams[i][j].split("<")[0];
+					}
+				}
+				
+				json = { pass : pass,
+					teams : teams,
+					winners : numTeam
+				};
+				
+				var postVar = JSON.stringify(json);
+				$.post('winners.php', {json: postVar}, function(res) {
+					var obj = JSON.parse(res);
+					alert(obj['result']);
+				}, "text");
+				
+			}
+			
+			function execute(randomness, useMinPlayers) {
+				//determina los jugadores
+				getPlayers();
+				//verifica que existan los jugadores
+				verifyPlayers();
+				//si existen jugadores que no están en la base de datos
+				if (nonExistingPlayers.length > 0) {
+					var string = "";
+					for (i = 0; i < nonExistingPlayers.length; i++) {
+						if (i > 0)
+							string += ", ";
+						string += nonExistingPlayers[i];
+					}
+					if (confirm("¿Agregar " + string + " a la BD?")) {
+						//agrega los nuevos nicks a la bd
+						json = {
+							newPlayers : nonExistingPlayers
+						};
+						var postVar = JSON.stringify(json);
+						$.post('addplayers.php', {json: postVar}, function(res) {
+							select_teams(randomness, useMinPlayers);
+						}, "text");
+						alert('Agregados nuevos nicks a la BD');
+						refreshExistingPlayers();
+					} else {
+						select_teams(randomness, useMinPlayers);
+					}
+				} else {
+					select_teams(randomness, useMinPlayers);
+				}
+			}
+			
+			function select_teams(randomness, useMinPlayers) {
+				//el número de equipos
+				var numTeams = $("#teams_number").text();
+				//determina los jugadores
+				getPlayers();
+				//el peso de los equipos
+				var team_weights = [];
+				//la variable de comunicación
+				json = {
+					numTeams : numTeams,
+					players : players,
+					randomness : randomness,
+					useMinPlayers : useMinPlayers
+				};
+				var postVar = JSON.stringify(json);
+				$.post('selectteams.php', {json: postVar}, function(res) {
+					teams = [];
+					var obj = JSON.parse(res);
+					var i, j;
+					if (obj['teams'].length >= 2) {
+						for (i = 0; i < obj['teams'].length; i++) {
+							teams[i] = [];
+							team_weights[i] = obj['weight'][i];
+							if (obj['teams'][i] != null) {
+								for (j = 0; j < obj['teams'][i].length; j++) {
+									teams[i][j] = obj['teams'][i][j]['name'] + "<sub>" + obj['teams'][i][j]['weight'] + "</sub>";
+								}
+							}
+						}
+						animateResult();
+					}
+				}, "text");
+				
+				function animateResult() {
+					// bloques por equipo
+					$("#right").html("");
+					for (var i in teams) {
+						if (i == 1)
+							$("<div />").addClass("vs").text("VS").appendTo($("#right"));
+						if (i == 2)
+							$("<br />").appendTo($("#right"));
+						var team = teams[i];
+						var $team_block = $("<div />").addClass("team_block").html(team.join("<br />")).hide();
+						$("<br /><small>Score : " + team_weights[i] + "</small>").appendTo($team_block);
+						$("<br />").appendTo($team_block);
+						var $winner = $("<button />").text("Winner").css({"font-size" : "0.3em"}).attr("alt",i).button().hide().click(function(){
+							//console.log($(this).attr("alt"));
+							var pass = prompt("Ingresar password");
+							setWinners($(this).attr("alt"), pass);
+						}).appendTo($team_block);
+						
+						$team_block.appendTo($("#right"));
+					}
+
+					// brillar
+					var $team_blocks = $(".team_block");
+					var glows = ["glow_green", "glow_blue", "glow_purple", "glow_red" ];
+					$team_blocks.each(function(i,e) {
+						while (true) {
+							var x = Math.floor(Math.random() * glows.length);
+							if (glows[x] != undefined) {
+								$(e).addClass(glows[x]);
+								glows[x] = undefined;
+								break;
+							}
+						}
+						
+					});
+					
+					// mostrar
+					if (teams.length == 2) {
+						$($team_blocks[0]).css("text-align", "right").show("slide", {direction : "left"}, "500", function(){
+							if ($(this).filter(":visible").length > 0) {
+								var $that = $(this);
+								test($(this), "-", "", $(this).attr("class").split(" ")[1]);
+								setTimeout(function() {
+									$that.find("button").fadeIn(2000).css({"float" : "right"});
+								}, 1500);
+								
+							}
+						});
+						$($team_blocks[1]).css("text-align", "left").show("slide", {direction : "right"}, "500", function(){
+							var $that = $(this);
+							if ($(this).filter(":visible").length > 0) {
+								test($(this), "+", "", $(this).attr("class").split(" ")[1]);
+								setTimeout(function() {
+									$that.find("button").fadeIn(2000);
+								}, 1500);
+
+							}
+						});
+						
+						var height = $team_blocks.outerHeight();
+						$(".vs").css("line-height", height + "px").hide().fadeIn();
+						
+					}
+				}
+				
+				function test($this, x_dir, y_dir, glow_class) {
+					var block_pos = $this.offset();
+					var block_dimensions = {h : $this.height(), w : $this.innerWidth()};
+					var base_pos = {left : block_pos.left + (x_dir == "-" ? block_dimensions.w - 25 : 0), top : block_pos.top + block_dimensions.h/2};
+					
+					for (var i = 0; i < 12; i++) {
+						var random_stuff = Math.floor(Math.random() * block_dimensions.h - block_dimensions.h/2);
+						var $particle = $("<div />").addClass("particle " + glow_class).text(":").appendTo("body")
+										.offset({left : base_pos.left, top : base_pos.top + random_stuff});
+						var x_sign = x_dir != "" ? x_dir : (Math.random() > 0.5 ? "-" : "+");
+						var y_sign = y_dir != "" ? y_dir : (Math.random() > 0.5 ? "-" : "+");
+						$particle.animate({
+							left : [x_sign + '=' + (190 + Math.random()*170), "linear"],
+							top : [y_sign + '=' + (30 + Math.random()*90), "linear"],
+							opacity : 0
+						}, 1400 + Math.random()*600, function() {$(this).remove();});
+					}
+				}
+			};
+			
+		</script>
+	</body></html>
